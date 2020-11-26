@@ -26,5 +26,8 @@ keptn install --chart-repo=http://localhost:8000/keptn-psu.tgz --endpoint-servic
  
 End program with CTRL+C
 
-
 ```
+
+## Required Dependencies
+* wget
+* python
