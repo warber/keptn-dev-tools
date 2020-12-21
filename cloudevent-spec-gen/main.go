@@ -8,14 +8,23 @@ import (
 	keptnv2 "github.com/keptn/go-utils/pkg/lib/v0_2_0"
 )
 
-func createDataSection(md *MarkDown, data interface{}) {
+func createDataSection(md *MarkDown, eventType string, data interface{}) {
 	md.Title("Data", 4)
+	md.WriteLineBreak()
+	md.Writeln("<details><summary>Json Schema of " + eventType + "</summary>")
+	md.Writeln("<p>")
+	md.WriteLineBreak()
 	md.CodeBlock(toJsonSchema(data), "json")
+	md.Writeln("</p>")
+	md.Writeln("</details>")
+	md.WriteLineBreak()
 }
 
 func createExampleSection(md *MarkDown, eventType string, data interface{}) {
 	md.Title("Example", 4)
+	md.WriteLineBreak()
 	md.CodeBlock(toJson(ce(eventType, data)), "json")
+	md.WriteLineBreak()
 }
 func createUpLink(md *MarkDown) {
 	md.UpLink()
@@ -25,7 +34,7 @@ func createSection(md *MarkDown, title string, eventType string, data interface{
 	md.Title(title, 3)
 	md.Title("Type", 4)
 	md.Writeln(eventType)
-	createDataSection(md, data)
+	createDataSection(md, eventType, data)
 	createExampleSection(md, eventType, data)
 	createUpLink(md)
 }
@@ -49,6 +58,7 @@ func main() {
 	md.Bullet().Link("Remediation", "#remediation")
 	md.Bullet().Link("Action", "#action")
 	md.Bullet().Link("Get-SLI", "#get-sli")
+	md.Bullet().Link("Problem", "#problem")
 	md.Writeln("---")
 	md.MultiBr(2)
 

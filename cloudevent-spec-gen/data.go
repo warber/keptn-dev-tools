@@ -3,14 +3,13 @@ package main
 import (
 	"encoding/json"
 	cloudevents "github.com/cloudevents/sdk-go/v2"
-	"github.com/google/uuid"
 	keptn "github.com/keptn/go-utils/pkg/lib"
 	keptnv2 "github.com/keptn/go-utils/pkg/lib/v0_2_0"
 )
 
 func ce(ceType string, data interface{}) *cloudevents.Event {
 	ce := cloudevents.NewEvent()
-	ce.SetID(uuid.New().String())
+	ce.SetID("c4d3a334-6cb9-4e8c-a372-7e0b45942f53")
 	ce.SetType(ceType)
 	ce.SetSource("source-service")
 	ce.SetDataContentType(cloudevents.ApplicationJSON)
@@ -152,7 +151,7 @@ var testTestFinishedEventData = keptnv2.TestFinishedEventData{
 }
 
 var evaluationTriggeredEventData = keptnv2.EvaluationTriggeredEventData{
-	EventData: keptnv2.EventData{},
+	EventData: commonEventData,
 	Test: struct {
 		Start string `json:"start"`
 		End   string `json:"end"`
